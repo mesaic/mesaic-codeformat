@@ -13,6 +13,6 @@
     "eslint": "^3.17.1",
     "eslint_d": "^4.2.2",
     "prettier": "^0.22.0",
-    "eslint-config-mesaic": "git+ssh://git@github.com/wish-technology/eslint-config-mesaic.git#82c1b1a"
+    "eslint-config-mesaic": "*"
   }
 }
