@@ -1,0 +1,36 @@
+#!/usr/bin/env sh
+RED='\033[0;31m'
+NC='\033[0m' # No Color
+
+shift
+jsfiles="$@"
+
+echo >&2 $RED
+
+diffs=$(node_modules/.bin/prettier -l --print-width 100 --single-quote --trailing-comma es5 --no-bracket-spacing --jsx-bracket-same-line $jsfiles)
+
+[ -z "$diffs" ] && exit 0
+
+echo >&2 "${RED}Javascript files must be formatted with prettier. Please run \`npm run format-staged\`. Failed files:"
+for file in $diffs; do echo >&2 "- $file"; done
+echo >&2 "$NC"
+
+test_eslint() {
+  for f in $jsfiles; do
+    ./node_modules/.bin/eslint_d --stdin --stdin-filename $f --no-eslintrc -c  ./node_modules/eslint-config-mesaic/fix.js < $f 2>&1 >/dev/null
+    if [ "$?" != "0" ]; then
+      echo $f
+    fi
+  done
+}
+
+diffs=$(test_eslint)
+
+[ -z "$diffs" ] && exit 0
+
+echo >&2 "${RED}Javascript files must be valid with eslint. Please run \`npm run format-staged\`. Failed files:"
+for file in $diffs; do echo >&2 "- $file"; done
+
+echo >&2 "${NC}"
+
+exit 1

@@ -3,7 +3,10 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "bin": "./mesaic-codeformat",
+  "bin": {
+    "mesaic-codeformat": "./mesaic-codeformat",
+    "mesaic-codeformat-check": "./mesaic-codeformat-check"
+  },
   "scripts": {
     "bin": "echo \"Error: no test specified\" && exit 1"
   },
