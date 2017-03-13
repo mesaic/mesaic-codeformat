@@ -5,7 +5,8 @@
   "main": "index.js",
   "bin": {
     "mesaic-codeformat": "./mesaic-codeformat",
-    "mesaic-codeformat-check": "./mesaic-codeformat-check"
+    "mesaic-codeformat-check": "./mesaic-codeformat-check",
+    "mesaic-codeformat-staged": "./mesaic-codeformat-staged"
   },
   "scripts": {
     "bin": "echo \"Error: no test specified\" && exit 1"

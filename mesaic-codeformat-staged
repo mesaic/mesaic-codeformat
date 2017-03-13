@@ -1,0 +1,4 @@
+#!/usr/bin/env sh
+SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+staged_files=$(git diff --cached --name-only --diff-filter=ACM | grep '\.js$' | tr '\n' ' ')
+$SCRIPT_DIR/mesaic-codeformat $staged_files
