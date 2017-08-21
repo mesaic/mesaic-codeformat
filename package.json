@@ -1,6 +1,6 @@
 {
-  "name": "mesaic-codeformat",
-  "version": "1.0.0",
+  "name": "@mesaic/mesaic-codeformat",
+  "version": "0.0.0",
   "description": "",
   "main": "index.js",
   "bin": {
@@ -14,9 +14,12 @@
   "author": "Mesaic",
   "license": "MIT",
   "peerDependencies": {
+    "@mesaic/eslint-config-mesaic": "*",
     "eslint": "*",
     "eslint_d": "*",
-    "prettier": "*",
-    "eslint-config-mesaic": "*"
+    "prettier": "*"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }
