@@ -8,4 +8,4 @@ if [ ! -f node_modules/.bin/eslint_d ]; then
   exit 1
 fi
 node_modules/.bin/prettier --write --print-width 100 --single-quote --trailing-comma all --no-bracket-spacing --jsx-bracket-same-line "$@"
-node_modules/.bin/eslint_d --no-eslintrc -c ./node_modules/eslint-config-mesaic/fix.js --fix "$@"
+node_modules/.bin/eslint_d --no-eslintrc -c ./node_modules/@mesaic/eslint-config-mesaic/fix.js --fix "$@"

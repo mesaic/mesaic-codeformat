@@ -17,7 +17,7 @@ echo >&2 "$NC"
 
 test_eslint() {
   for f in $jsfiles; do
-    ./node_modules/.bin/eslint_d --stdin --stdin-filename $f --no-eslintrc -c  ./node_modules/eslint-config-mesaic/fix.js < $f 2>&1 >/dev/null
+    ./node_modules/.bin/eslint_d --stdin --stdin-filename $f --no-eslintrc -c  ./node_modules/@mesaic/eslint-config-mesaic/fix.js < $f 2>&1 >/dev/null
     if [ "$?" != "0" ]; then
       echo $f
     fi
