@@ -17,7 +17,7 @@
     "@mesaic/eslint-config-mesaic": "*",
     "eslint": "*",
     "eslint_d": "*",
-    "prettier": "*"
+    "prettier": ">= 1.11.0"
   },
   "publishConfig": {
     "access": "public"
