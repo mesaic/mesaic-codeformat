@@ -7,13 +7,7 @@ jsfiles="$@"
 
 echo >&2 $RED
 
-diffs=$(node_modules/.bin/prettier -l --print-width 100 --single-quote --trailing-comma all --no-bracket-spacing --jsx-bracket-same-line $jsfiles)
-
-[ -z "$diffs" ] && exit 0
-
-echo >&2 "${RED}Javascript files must be formatted with prettier. Please run \`npm run format-staged\`. Failed files:"
-for file in $diffs; do echo >&2 "- $file"; done
-echo >&2 "$NC"
+prettier_diffs=$(node_modules/.bin/prettier -l --print-width 100 --single-quote --trailing-comma all --no-bracket-spacing --jsx-bracket-same-line $jsfiles)
 
 test_eslint() {
   for f in $jsfiles; do
@@ -24,13 +18,22 @@ test_eslint() {
   done
 }
 
-diffs=$(test_eslint)
+eslint_diffs=$(test_eslint)
 
-[ -z "$diffs" ] && exit 0
+exit_code=0
 
-echo >&2 "${RED}Javascript files must be valid with eslint. Please run \`npm run format-staged\`. Failed files:"
-for file in $diffs; do echo >&2 "- $file"; done
+if [ ! -z "$prettier_diffs" ]; then
+  exit_code=1
+  echo >&2 "${RED}Javascript files must be formatted with prettier. Please run \`npm run format-staged\`. Failed files:"
+  for file in $prettier_diffs; do echo >&2 "- $file"; done
+fi
+
+if [ ! -z "$eslint_diffs" ]; then
+  exit_code=1
+  echo >&2 "${RED}Javascript files must be valid with eslint. Please run \`npm run format-staged\`. Failed files:"
+  for file in $eslint_diffs; do echo >&2 "- $file"; done
+fi
 
 echo >&2 "${NC}"
 
-exit 1
+exit $exit_code
